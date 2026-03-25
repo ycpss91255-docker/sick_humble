@@ -1,0 +1,26 @@
+services:
+  # ── Runtime ────────────────────────────────────────────────
+  runtime:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: ${DOCKER_HUB_USER:-local}/sick_humble:latest
+    container_name: sick_humble
+    privileged: true
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    volumes:
+      - /dev:/dev
+
+  # ── Smoke test (ephemeral) ─────────────────────────────────
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    image: ${DOCKER_HUB_USER:-local}/sick_humble:test
+    profiles:
+      - test
