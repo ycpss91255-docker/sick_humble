@@ -31,8 +31,47 @@ setup() {
     assert_success
 }
 
+# -------------------- Base tools --------------------
+
+@test "git is available" {
+    run git --version
+    assert_success
+}
+
+@test "sudo is available" {
+    run sudo --version
+    assert_success
+}
+
+@test "sudo passwordless works" {
+    run sudo true
+    assert_success
+}
+
 # -------------------- System --------------------
 
-@test "entrypoint.sh exists and is executable" {
+@test "User is not root" {
+    assert [ "$(id -u)" -ne 0 ]
+}
+
+@test "HOME is set and exists" {
+    assert [ -n "${HOME}" ]
+    assert [ -d "${HOME}" ]
+}
+
+@test "Timezone is Asia/Taipei" {
+    run cat /etc/timezone
+    assert_output "Asia/Taipei"
+}
+
+@test "LANG is en_US.UTF-8" {
+    assert_equal "${LANG}" "en_US.UTF-8"
+}
+
+@test "entrypoint.sh exists and executable" {
     assert [ -x "/entrypoint.sh" ]
+}
+
+@test "Work directory exists" {
+    assert [ -d "${HOME}/work" ]
 }
