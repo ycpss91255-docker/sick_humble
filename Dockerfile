@@ -113,7 +113,7 @@ RUN apt-get update && \
         # Application packages
         ros-${ROS_DISTRO}-sick-safetyscanners2-interfaces \
         ros-${ROS_DISTRO}-sick-safetyscanners-base \
-        &&
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -161,6 +161,7 @@ COPY --from=lint-tools /usr/local/bin/hadolint /usr/local/bin/hadolint
 # Lint: ShellCheck (.sh) + Hadolint (Dockerfile)
 COPY .hadolint.yaml /lint/.hadolint.yaml
 COPY Dockerfile /lint/Dockerfile
+COPY compose.yaml /lint/compose.yaml
 COPY *.sh /lint/
 RUN shellcheck -S warning /lint/*.sh
 RUN cd /lint && hadolint Dockerfile
@@ -202,7 +203,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ros-${ROS_DISTRO}-sick-safetyscanners2-interfaces \
         ros-${ROS_DISTRO}-sick-safetyscanners-base \
-        &&
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
