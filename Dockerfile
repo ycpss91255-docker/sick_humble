@@ -113,7 +113,7 @@ RUN apt-get update && \
         # Application packages
         ros-${ROS_DISTRO}-sick-safetyscanners2-interfaces \
         ros-${ROS_DISTRO}-sick-safetyscanners-base \
-        &&
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -203,7 +203,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ros-${ROS_DISTRO}-sick-safetyscanners2-interfaces \
         ros-${ROS_DISTRO}-sick-safetyscanners-base \
-        &&
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
