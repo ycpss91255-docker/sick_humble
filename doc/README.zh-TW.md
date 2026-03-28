@@ -91,7 +91,7 @@ graph TD
 
     EXT3 --> runtime["runtime\nsick_safetyscanners2_interfaces + sick_safetyscanners_base"]:::stage
 
-    bats-src --> test["test暫時性\n煙霧測試，建置後丟棄"]:::ephemeral
+    bats-src --> test["test暫時性\nsmoke test，建置後丟棄"]:::ephemeral
     bats-ext --> test
     runtime --> test
 
