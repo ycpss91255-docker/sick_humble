@@ -113,7 +113,7 @@ graph TD
 
 ## Smoke Tests
 
-位于 `test/smoke_test/` — 在 `docker build --target test` 时自动执行 — 共 **22 项测试**。
+位于 `test/smoke/` — 在 `docker build --target test` 时自动执行 — 共 **22 项测试**。
 
 <details>
 <summary>点击展开测试详情</summary>
@@ -185,7 +185,7 @@ sick_humble/
 │   ├── build-worker.yaml        # Docker 构建 + smoke test
 │   └── release-worker.yaml      # GitHub Release
 └── test/
-    └── smoke_test/              # Bats 环境测试
+    └── smoke/              # Bats 环境测试
         ├── ros_env.bats
         ├── script_help.bats
         └── test_helper.bash
