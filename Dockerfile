@@ -82,8 +82,8 @@ RUN sed -i "s@archive.ubuntu.com@${APT_MIRROR_UBUNTU}@g" /etc/apt/sources.list |
     update-locale LANG="${LANG}" && \
     ln -snf /usr/share/zoneinfo/"${TZ}" /etc/localtime && echo "${TZ}" > /etc/timezone
 
-############################## base ##############################
-FROM sys AS base
+############################## devel-base ##############################
+FROM sys AS devel-base
 
 ARG ROS_DISTRO
 
@@ -119,7 +119,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ############################## devel ##############################
-FROM base AS devel
+FROM devel-base AS devel
 
 ARG USER
 ARG GROUP
@@ -150,8 +150,8 @@ EXPOSE 22
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]
 
-############################## test (ephemeral) ##############################
-FROM devel AS test
+############################## devel-test (ephemeral) ##############################
+FROM devel AS devel-test
 
 USER root
 
@@ -219,3 +219,22 @@ EXPOSE 22
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]
+
+############################## runtime-test (ephemeral) ##############################
+# Install-check smoke for the runtime image (template v0.21.0+ #243).
+# Default smoke verifies USER + bash + login shell rc don't error.
+# Override per-repo via build_args: RUNTIME_SMOKE_CMD=<command>
+# (constraint: command must be CLI-only — no GUI binaries that init
+# Qt / OGRE on --version / --help).
+FROM runtime AS runtime-test
+
+ARG RUNTIME_SMOKE_CMD='whoami && bash --version'
+# Inherit USER from runtime (non-root). install-check style smoke
+# doesn't need privilege; if a downstream override needs root, wrap
+# the command with sudo via RUNTIME_SMOKE_CMD.
+#
+# `sh -c` wrapper required: `RUN ${ARG}` does word-splitting on the
+# substituted value and treats shell operators (&&, ||, etc.) as
+# literal arguments. Wrapping with `sh -c "${ARG}"` passes the value
+# as a single string for sh to parse, preserving operators.
+RUN sh -c "${RUNTIME_SMOKE_CMD}"
