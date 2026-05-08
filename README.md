@@ -1,15 +1,22 @@
-**[English](README.md)** | **[繁體中文](doc/README.zh-TW.md)** | **[简体中文](doc/README.zh-CN.md)** | **[日本語](doc/README.ja.md)**
-
 # SICK Safety Scanner Docker Container (ROS 2 Humble)
 
-> **TL;DR** — Containerized SICK Safety Scanner (nanoscan3) driver for ROS 2 Humble. Installs `sick_safetyscanners2_interfaces` and `sick_safetyscanners_base` from apt.
->
-> ```bash
-> ./build.sh && ./run.sh
-> ```
+[![CI](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml)
+
+**[English](README.md)** | **[繁體中文](doc/README.zh-TW.md)** | **[简体中文](doc/README.zh-CN.md)** | **[日本語](doc/README.ja.md)**
+
+## TL;DR
+
+Containerized SICK Safety Scanner (nanoscan3) driver for ROS 2 Humble. Installs `sick_safetyscanners2_interfaces` and `sick_safetyscanners_base` from apt.
+
+```bash
+./build.sh && ./run.sh
+```
+
+---
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Features](#features)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
@@ -19,6 +26,10 @@
 - [Directory Structure](#directory-structure)
 
 ---
+
+## Overview
+
+Provides a reproducible ROS 2 Humble environment for SICK Safety Scanner devices (e.g. nanoScan3). The container installs `sick_safetyscanners2_interfaces` and `sick_safetyscanners_base` from the ROS 2 apt repository, providing a ready-to-run starting point for integrating SICK safety LiDARs into a ROS 2 stack. Multi-arch base image supports x86_64 and ARM64 (Raspberry Pi, Jetson CPU mode).
 
 ## Features
 
