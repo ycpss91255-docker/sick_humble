@@ -2,6 +2,8 @@
 
 # SICK Safety Scanner Docker コンテナ（ROS 2 Humble）
 
+[![CI](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
+
 > **TL;DR** — コンテナ化された SICK Safety Scanner（nanoscan3）ROS 2 Humble ドライバ。apt で `sick_safetyscanners2_interfaces` と `sick_safetyscanners_base` をインストールします。
 >
 > ```bash

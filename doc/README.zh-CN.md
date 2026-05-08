@@ -2,6 +2,8 @@
 
 # SICK Safety Scanner Docker 容器（ROS 2 Humble）
 
+[![CI](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/sick_humble/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
+
 > **TL;DR** — 容器化的 SICK Safety Scanner（nanoscan3）ROS 2 Humble 驱动程序。通过 apt 安装 `sick_safetyscanners2_interfaces` 和 `sick_safetyscanners_base`。
 >
 > ```bash
