@@ -23,7 +23,7 @@ jobs:
         ROS_DISTRO=humble
         ROS_TAG=ros-base
         UBUNTU_CODENAME=jammy
-        RUNTIME_SMOKE_CMD=source /opt/ros/humble/setup.bash && ros2 pkg list | grep sick
+        RUNTIME_SMOKE_CMD=. /opt/ros/humble/setup.bash && ros2 pkg list | grep sick
 
   call-release:
     needs: call-docker-build
